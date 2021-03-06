@@ -16,28 +16,55 @@ function computerPlay() {
 }
 
 function getKeyByValue(object, value) {
+    /**Gets a key of a dictionary by its value.*/
     return Object.keys(object).find(key => object[key] === value);
 }
 
 function playRound(playerChoice, computerChoice) {
     /**Runs a round of the game.*/
-    console.log(`Player - ${getKeyByValue(choices, playerChoice)}.`);
-    console.log(`Computer - ${getKeyByValue(choices, computerChoice)}.`);
+    let roundWinner; 
     if (((playerChoice + 1) % 3) == computerChoice) {
-        return "Computer won.";
+        roundWinner = "computer";
     } else if (playerChoice == computerChoice) {
-        return "Draw.";
+        roundWinner = "draw";
     } else {
-        return "Player won.";
+        roundWinner = "player";
     }
+
+    return {
+        "playerChoice": getKeyByValue(choices, playerChoice),
+        "computerChoice": getKeyByValue(choices, computerChoice),
+        "roundWinner": roundWinner,
+    };
 }
 
 function playGame() {
-    /** Runs playRound() five consecutive times. */
+    /**Runs playRound() five consecutive times.*/
+    let playerScore = 0;
+    let computerScore = 0;
     for (i = 0; i < 5; i++) {
-        console.log(playRound(playerPlay(), computerPlay()));
+        round = playRound(playerPlay(), computerPlay());
+
+        if (round.roundWinner === "player") {
+            playerScore++;
+        } else if (round.roundWinner === "computer") {
+            computerScore++;
+        }
+        
+        console.log(`----- ROUND ${i + 1} -----`)
+        console.log(`Player: ${round.playerChoice}`);
+        console.log(`Computer: ${round.computerChoice}`);
+        console.log(`Winner: ${round.roundWinner}`);
     }
-    return "Game over.";
+    console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
+    
+    if (playerScore > computerScore) {
+        return "Player wins!";
+    } else if (playerScore < computerScore) {
+        return "Computer wins!";
+    } else {
+        return "It's a draw!";
+    }
 }
 
 console.log(playGame());
