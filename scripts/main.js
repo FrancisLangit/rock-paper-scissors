@@ -1,7 +1,13 @@
+function playGame() {
+    /** Runs playRound() five consecutive times. */
+    for (i = 0; i < 5; i++) {
+        console.log(playRound(playerPlay(), computerPlay()));
+    }
+    return "Game over.";
+}
+
 function playRound(playerChoice, computerChoice) {
     /**Runs a round of the game.*/
-    console.log(playerChoice, computerChoice);
-
     if (((playerChoice + 1) % 3) == computerChoice) {
         return "Player 2 won.";
     } else if (playerChoice == computerChoice) {
@@ -27,6 +33,4 @@ function computerPlay() {
     return Math.floor(Math.random() * Math.floor(3));
 }
 
-let playerChoice = playerPlay();
-let computerChoice = computerPlay();
-console.log(playRound(playerChoice, computerChoice));
+console.log(playGame());
