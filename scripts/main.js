@@ -20,22 +20,44 @@ function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
 
+function getRoundWinner(playerChoice, computerChoice) { 
+    /**Returns string of winner of the round.*/
+    if (((playerChoice + 1) % 3) == computerChoice) {
+        return "computer";
+    } else if (playerChoice == computerChoice) {
+        return "draw";
+    } else {
+        return "player";
+    }
+}
+
 function playRound(playerChoice, computerChoice) {
     /**Runs a round of the game.*/
-    let roundWinner; 
-    if (((playerChoice + 1) % 3) == computerChoice) {
-        roundWinner = "computer";
-    } else if (playerChoice == computerChoice) {
-        roundWinner = "draw";
-    } else {
-        roundWinner = "player";
-    }
-
     return {
         "playerChoice": getKeyByValue(choices, playerChoice),
         "computerChoice": getKeyByValue(choices, computerChoice),
-        "roundWinner": roundWinner,
+        "roundWinner": getRoundWinner(playerChoice, computerChoice),
     };
+}
+
+function printRoundResults(round_num, round, playerScore, computerScore) {
+    /**Prints results of round to console.*/
+    console.log(`----- ROUND ${round_num + 1} -----`)
+    console.log(`Player: ${round.playerChoice}`);
+    console.log(`Computer: ${round.computerChoice}`);
+    console.log(`Winner: ${round.roundWinner}`);
+    console.log(`${playerScore} - ${computerScore}`);
+}
+
+function getGameWinner(playerScore, computerScore) {
+    /**Returns winner of the five rounds based on scores.*/
+    if (playerScore > computerScore) {
+        return "Player wins!";
+    } else if (playerScore < computerScore) {
+        return "Computer wins!";
+    } else {
+        return "It's a draw!";
+    }
 }
 
 function playGame() {
@@ -44,27 +66,14 @@ function playGame() {
     let computerScore = 0;
     for (i = 0; i < 5; i++) {
         round = playRound(playerPlay(), computerPlay());
-
         if (round.roundWinner === "player") {
             playerScore++;
         } else if (round.roundWinner === "computer") {
             computerScore++;
         }
-        
-        console.log(`----- ROUND ${i + 1} -----`)
-        console.log(`Player: ${round.playerChoice}`);
-        console.log(`Computer: ${round.computerChoice}`);
-        console.log(`Winner: ${round.roundWinner}`);
+        printRoundResults(i, round, playerScore, computerScore);
     }
-    console.log(`Player: ${playerScore} | Computer: ${computerScore}`);
-    
-    if (playerScore > computerScore) {
-        return "Player wins!";
-    } else if (playerScore < computerScore) {
-        return "Computer wins!";
-    } else {
-        return "It's a draw!";
-    }
+    return (`-- GAME OVER - ${getGameWinner(playerScore, computerScore)} --`);
 }
 
 console.log(playGame());
