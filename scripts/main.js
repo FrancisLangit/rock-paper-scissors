@@ -1,9 +1,7 @@
 class RockPaperScissors {
     constructor() {
+        this.round = 0;
         this.moves = {
-            // "rock": 0,
-            // "paper": 1,
-            // "scissors": 2,
             0: "rock",
             1: "paper",
             2: "scissors",
@@ -38,6 +36,7 @@ class RockPaperScissors {
     playRound(playerMove, computerMove) {
         /**Simulates one round of rock-paper-scissors. Returns dictionary
          * containing of results of round.*/
+        this.round++;
         return {
             "playerMove": this.moves[playerMove],
             "computerMove": this.moves[computerMove],
@@ -57,29 +56,7 @@ class RockPaperScissors {
     }
     
     play() {
-        //**Runs playRound five times.*/
-
-        // for (let i = 0; i < 5; i++) {
-        //     let playerMove = this.getPlayerMove();
-        //     let computerMove = this.getComputerMove(); 
-        //     let round = this.playRound(playerMove, computerMove);
-
-        //     if (round.winner === 'player') {
-        //         this.playerScore++;
-        //     } else if (round.winner === 'computer') {
-        //         this.computerScore++;
-        //     }
-
-        //     console.log(`----- ROUND ${i + 1} -----`)
-        //     console.log(`Player: ${round.playerMove}`);
-        //     console.log(`Computer: ${round.computerMove}`);
-        //     console.log(`Winner: ${round.winner}`);
-        //     console.log(`${this.playerScore} - ${this.computerScore}`);
-        // }
-
-        // let result = this.getResult(this.playerScore, this.computerScore)
-        // return `-- GAME OVER - ${result} --`;
-
+        //**Runs the game.*/
         const buttons = document.querySelectorAll('button');
 
         buttons.forEach((button) => { 
@@ -88,16 +65,29 @@ class RockPaperScissors {
                 let computerMove = this.getComputerMove();
                 let round = this.playRound(playerMove, computerMove);
 
+                if (round.winner === 'player') {
+                    this.playerScore++;
+                } else if (round.winner === 'computer') {
+                    this.computerScore++;
+                }
+                console.log(`----- ROUND ${this.round} -----`)
                 console.log(`Player: ${round.playerMove}`);
                 console.log(`Computer: ${round.computerMove}`);
                 console.log(`Winner: ${round.winner}`);
                 console.log(`${this.playerScore} - ${this.computerScore}`);
+
+                if (this.round > 4) {
+                    this.round = 0;
+                    this.playerScore = 0;
+                    this.computerScore = 0;
+
+                    let result = this.getResult(this.playerScore, this.computerScore)
+                    console.log(`-- GAME OVER - ${result} --`);
+                }
             })
         })
     }
 }
 
 let game = new RockPaperScissors(); 
-// console.log(game.play());
-
 game.play();
