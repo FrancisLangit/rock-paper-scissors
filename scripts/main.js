@@ -1,17 +1,15 @@
 class RockPaperScissors {
     constructor() {
         this.moves = {
-            "rock": 0,
-            "paper": 1,
-            "scissors": 2,
+            // "rock": 0,
+            // "paper": 1,
+            // "scissors": 2,
+            0: "rock",
+            1: "paper",
+            2: "scissors",
         };
         this.playerScore = 0;
         this.computerScore = 0;
-    }
-
-    getKeyByValue(object, value) {
-        /**Gets dictionary key by its value.*/
-        return Object.keys(object).find(key => object[key] === value);
     }
 
     getPlayerMove() {
@@ -41,8 +39,8 @@ class RockPaperScissors {
         /**Simulates one round of rock-paper-scissors. Returns dictionary
          * containing of results of round.*/
         return {
-            "playerMove": this.getKeyByValue(this.moves, playerMove),
-            "computerMove": this.getKeyByValue(this.moves, computerMove),
+            "playerMove": this.moves[playerMove],
+            "computerMove": this.moves[computerMove],
             "winner": this.getRoundWinner(playerMove, computerMove),
         };
     }
@@ -60,6 +58,7 @@ class RockPaperScissors {
     
     play() {
         //**Runs playRound five times.*/
+
         // for (let i = 0; i < 5; i++) {
         //     let playerMove = this.getPlayerMove();
         //     let computerMove = this.getComputerMove(); 
@@ -83,14 +82,22 @@ class RockPaperScissors {
 
         const buttons = document.querySelectorAll('button');
 
-        buttons.forEach((button) => {
-
+        buttons.forEach((button) => { 
             button.addEventListener('click', () => {
-                console.log(button.id);
+                let playerMove = button.id;
+                let computerMove = this.getComputerMove();
+                let round = this.playRound(playerMove, computerMove);
+
+                console.log(`Player: ${round.playerMove}`);
+                console.log(`Computer: ${round.computerMove}`);
+                console.log(`Winner: ${round.winner}`);
+                console.log(`${this.playerScore} - ${this.computerScore}`);
             })
         })
     }
 }
 
 let game = new RockPaperScissors(); 
-console.log(game.play());
+// console.log(game.play());
+
+game.play();
