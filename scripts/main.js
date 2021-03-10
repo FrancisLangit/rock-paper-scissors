@@ -1,19 +1,13 @@
 class RockPaperScissors {
     constructor() {
-        this.round = 0;
         this.moves = {
             0: "rock",
             1: "paper",
             2: "scissors",
         };
+        this.round = 0;
         this.playerScore = 0;
         this.computerScore = 0;
-    }
-
-    getPlayerMove() {
-        /**Prompts user's move for round.*/
-        let playerMove = prompt("Rock, paper, or scissors?");
-        return this.moves[playerMove.toLowerCase()];
     }
 
     getComputerMove() {
@@ -33,17 +27,6 @@ class RockPaperScissors {
         }
     }
 
-    playRound(playerMove, computerMove) {
-        /**Simulates one round of rock-paper-scissors. Returns dictionary
-         * containing of results of round.*/
-        this.round++;
-        return {
-            "playerMove": this.moves[playerMove],
-            "computerMove": this.moves[computerMove],
-            "winner": this.getRoundWinner(playerMove, computerMove),
-        };
-    }
-
     getResult() {
         /**Returns string declaring result of game after five rounds.*/
         if (this.playerScore > this.computerScore) {
@@ -55,37 +38,54 @@ class RockPaperScissors {
         }
     }
     
+    playRound(button) {
+        let playerMove = button.id;
+        let computerMove = this.getComputerMove();
+        let roundWinner = this.getRoundWinner(playerMove, computerMove);
+        
+        if (roundWinner === 'player') {
+            this.playerScore++;
+        } else if (roundWinner === 'computer') {
+            this.computerScore++;
+        }
+
+        this.round++;
+
+        console.log(`----- ROUND ${this.round} -----`)
+        console.log(`Player: ${this.moves[playerMove]}`);
+        console.log(`Computer: ${this.moves[computerMove]}`);
+        console.log(`Winner: ${roundWinner}`);
+        console.log(`${this.playerScore} - ${this.computerScore}`);
+    }
+
     play() {
         //**Runs the game.*/
         const buttons = document.querySelectorAll('button');
 
         buttons.forEach((button) => { 
             button.addEventListener('click', () => {
-                let playerMove = button.id;
-                let computerMove = this.getComputerMove();
-                let round = this.playRound(playerMove, computerMove);
+                this.playRound(button);
 
-                if (round.winner === 'player') {
-                    this.playerScore++;
-                } else if (round.winner === 'computer') {
-                    this.computerScore++;
-                }
-                console.log(`----- ROUND ${this.round} -----`)
-                console.log(`Player: ${round.playerMove}`);
-                console.log(`Computer: ${round.computerMove}`);
-                console.log(`Winner: ${round.winner}`);
-                console.log(`${this.playerScore} - ${this.computerScore}`);
+                document.getElementById("scoreboardPlayer").innerHTML = this.playerScore;
+                document.getElementById("scoreboardComputer").innerHTML = this.computerScore;
 
                 if (this.round > 4) {
-                    this.round = 0;
-                    this.playerScore = 0;
-                    this.computerScore = 0;
+                    let result = this.getResult(this.playerScore, this.computerScore);
+                    document.getElementById("result").innerHTML = result;
+                }
 
-                    let result = this.getResult(this.playerScore, this.computerScore)
-                    console.log(`-- GAME OVER - ${result} --`);
+                if (this.round > 5) {
+                    this.reset();
                 }
             })
         })
+    }
+
+    reset() {
+        this.round = 0;
+        this.playerScore = 0;
+        this.computerScore = 0;
+        document.getElementById("result").innerHTML = "";
     }
 }
 
