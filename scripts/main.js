@@ -16,7 +16,7 @@ class RockPaperScissors {
 
     getPlayerMove() {
         /**Prompts user's move for round.*/
-        let playerMove = prompt("Rock, paper, or scissors?");    
+        let playerMove = prompt("Rock, paper, or scissors?");
         return this.moves[playerMove.toLowerCase()];
     }
 
@@ -60,26 +60,35 @@ class RockPaperScissors {
     
     play() {
         //**Runs playRound five times.*/
-        for (let i = 0; i < 5; i++) {
-            let playerMove = this.getPlayerMove();
-            let computerMove = this.getComputerMove(); 
-            let round = this.playRound(playerMove, computerMove);
+        // for (let i = 0; i < 5; i++) {
+        //     let playerMove = this.getPlayerMove();
+        //     let computerMove = this.getComputerMove(); 
+        //     let round = this.playRound(playerMove, computerMove);
 
-            if (round.winner === 'player') {
-                this.playerScore++;
-            } else if (round.winner === 'computer') {
-                this.computerScore++;
-            }
+        //     if (round.winner === 'player') {
+        //         this.playerScore++;
+        //     } else if (round.winner === 'computer') {
+        //         this.computerScore++;
+        //     }
 
-            console.log(`----- ROUND ${i + 1} -----`)
-            console.log(`Player: ${round.playerMove}`);
-            console.log(`Computer: ${round.computerMove}`);
-            console.log(`Winner: ${round.winner}`);
-            console.log(`${this.playerScore} - ${this.computerScore}`);
-        }
+        //     console.log(`----- ROUND ${i + 1} -----`)
+        //     console.log(`Player: ${round.playerMove}`);
+        //     console.log(`Computer: ${round.computerMove}`);
+        //     console.log(`Winner: ${round.winner}`);
+        //     console.log(`${this.playerScore} - ${this.computerScore}`);
+        // }
 
-        let result = this.getResult(this.playerScore, this.computerScore)
-        return `-- GAME OVER - ${result} --`;
+        // let result = this.getResult(this.playerScore, this.computerScore)
+        // return `-- GAME OVER - ${result} --`;
+
+        const buttons = document.querySelectorAll('button');
+
+        buttons.forEach((button) => {
+
+            button.addEventListener('click', () => {
+                console.log(button.id);
+            })
+        })
     }
 }
 
