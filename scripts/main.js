@@ -70,21 +70,32 @@ class RockPaperScissors {
         }
     }
 
-    endGame() {
-        //**Clears playArea div and displays result of game.*/
-        // Empty playArea div.
-        const playArea = document.getElementById('playArea'); 
-        playArea.innerHTML = '';
+    checkEndGame() {
+        /**Clears playArea div and displays result of game once either player
+         * reaches 5 points.*/
+        if (this.playerScore === 5 || this.computerScore === 5) {
+            // Empty playArea div.
+            const playArea = document.getElementById('playArea'); 
+            playArea.innerHTML = '';
+    
+            // Append game result to playArea.
+            const gameOver = document.createElement('h1');
+            gameOver.textContent = 'Game over!';
+    
+            const result = document.createElement('h4');
+            result.textContent = this.getResult();
+    
+            playArea.appendChild(gameOver);
+            playArea.appendChild(result);
 
-        // Append game result to playArea.
-        const gameOver = document.createElement('h1');
-        gameOver.textContent = 'Game over!';
-
-        const result = document.createElement('h4');
-        result.textContent = this.getResult();
-
-        playArea.appendChild(gameOver);
-        playArea.appendChild(result);
+            // Append "Play Again" button to playArea.
+            const playAgainButton = document.createElement('button');
+            playAgainButton.textContent = 'Play Again';
+            playAgainButton.addEventListener('click', () => {
+                window.location.reload();
+            })
+            playArea.appendChild(playAgainButton);
+        }
     }
 
     playRound(playerMove, computerMove) {
@@ -95,10 +106,7 @@ class RockPaperScissors {
         this.updateGameLog(playerMove, computerMove);
         this.updatePlayArea(
             this.moves[playerMove], this.moves[computerMove], roundWinner);
-
-        if (this.playerScore === 5 || this.computerScore === 5) {
-            this.endGame();
-        }
+        this.checkEndGame();
 
         this.round++;
     }
