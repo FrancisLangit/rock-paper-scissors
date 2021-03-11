@@ -11,7 +11,7 @@ class RockPaperScissors {
     }
 
     getComputerMove() {
-        /**Returns random integer from [0, 1, 2] representing computer's move 
+        /**Returns random integer from [0, 1, 2] representing computer's move
          * for round.*/
         return Math.floor(Math.random() * Math.floor(3));
     }
@@ -46,33 +46,42 @@ class RockPaperScissors {
         }
     }
 
-    logRound(playerMove, computerMove, roundWinner) {
+    updateGameLog(playerMove, computerMove) {
         /**Appends one-line summary of round to gameLog div.*/
-        // Convert numerical moves to text using this.moves dictionary.
         const gameLog = document.getElementById("gameLog");
         const log = document.createElement("p"); 
 
-        // Display one-line summary of round.
-        const logRound = `Round ${this.round}`;
+        const logRound = `R${this.round}`;
         const logMoves = ( 
             `P: ${this.moves[playerMove]} - C: ${this.moves[computerMove]}`);
-        const logScores = `P${this.playerScore} - C${this.computerScore}`;
-        log.innerHTML = ` ${logRound} | ${logMoves} | ${logScores}`;
+        const logScores = `P: ${this.playerScore} - C: ${this.computerScore}`;
+        log.textContent = `${logRound} | ${logMoves} | ${logScores}`;
         gameLog.appendChild(log);
     }
 
+    updatePlayArea(playerMove, computerMove, roundWinner) {
+        document.getElementById('round').textContent = `Round: ${this.round}`;    
+        document.getElementById('you').textContent = `You: ${playerMove}`;
+        document.getElementById('computer').textContent = (
+            `Computer: ${computerMove}`);
+        document.getElementById('winner').textContent = (
+            `Result: ${roundWinner}`);
+    }
+
     playRound(playerMove, computerMove) {
+        //**Plays one round of rock-paper-scissors.*/
         let roundWinner = this.getRoundWinner(playerMove, computerMove);
         
         this.incrementScores(roundWinner);
-        this.logRound(playerMove, computerMove, roundWinner);
+        this.updateGameLog(playerMove, computerMove);
+        this.updatePlayArea(
+            this.moves[playerMove], this.moves[computerMove], roundWinner);
 
         this.round++;
     }
 
     play() {
         //**Runs the game.*/
-
         const buttons = document.querySelectorAll('button');
 
         buttons.forEach((button) => {
