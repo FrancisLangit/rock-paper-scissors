@@ -13,13 +13,35 @@
     </head>
 
     <body>
-        <h1>Rock Paper Scissors</h1>
+        <div class="d-flex justify-content-center">
+            <div class="card text-center mx-5 mt-5" style="width: 50em;">
+                <div class="card-body">
+                    <h2 class="card-title">Rock Paper Scissors</h2>
+                    <h6 class="card-subtitle mb-1 text-muted">
+                        Don't know how to play the game? <a href="#">This</a> might help.
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="card text-center mx-5 mt-3" style="width: 50em;">
+                <div class="card-body">
+                    <h2 class="card-title">What's your move?</h2>
+                    <button id="0" type="button" class="btn btn-outline-dark">
+                        Rock
+                    </button>
+                    <button id="1" type="button" class="btn btn-outline-dark">
+                        Paper
+                    </button>
+                    <button id="2" type="button" class="btn btn-outline-dark">
+                        Scissors
+                    </button>
+                </div>
+            </div>
+        </div>
 
         <div id="playArea">
-            <button id="0">Rock</button>
-            <button id="1">Paper</button>
-            <button id="2">Scissors</button>
-
             <p id="displayPlayerScore"></p>
             <p id="displayComputerScore"></p>
 
@@ -30,5 +52,7 @@
 
             <div id="gameLog"></div>
         </div>
+
+
     </body>
 </html>
