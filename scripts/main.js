@@ -27,18 +27,8 @@ class RockPaperScissors {
         }
     }
 
-    getResult() {
-        /**Returns string declaring result of game after five rounds.*/
-        if (this.playerScore > this.computerScore) {
-            return "Player wins!";
-        } else if (this.playerScore < this.computerScore) {
-            return "Computer wins!";
-        } else {
-            return "It's a draw!";
-        }
-    }
-
     incrementScores(roundWinner) {
+        //**Increments scores of players based on winner of round.*/
         if (roundWinner === 'player') {
             this.playerScore++;
         } else if (roundWinner === 'computer') {
@@ -60,12 +50,41 @@ class RockPaperScissors {
     }
 
     updatePlayArea(playerMove, computerMove, roundWinner) {
-        document.getElementById('round').textContent = `Round: ${this.round}`;    
+        //**Updates contents of playArea div.*/
+        document.getElementById('round').textContent = `Round: ${this.round}`;  
         document.getElementById('you').textContent = `You: ${playerMove}`;
         document.getElementById('computer').textContent = (
             `Computer: ${computerMove}`);
         document.getElementById('winner').textContent = (
             `Result: ${roundWinner}`);
+    }
+
+    getResult() {
+        /**Returns string declaring result of game after five rounds.*/
+        if (this.playerScore > this.computerScore) {
+            return "Player wins!";
+        } else if (this.playerScore < this.computerScore) {
+            return "Computer wins!";
+        } else {
+            return "It's a draw!";
+        }
+    }
+
+    endGame() {
+        //**Clears playArea div and displays result of game.*/
+        // Empty playArea div.
+        const playArea = document.getElementById('playArea'); 
+        playArea.innerHTML = '';
+
+        // Append game result to playArea.
+        const gameOver = document.createElement('h1');
+        gameOver.textContent = 'Game over!';
+
+        const result = document.createElement('h4');
+        result.textContent = this.getResult();
+
+        playArea.appendChild(gameOver);
+        playArea.appendChild(result);
     }
 
     playRound(playerMove, computerMove) {
@@ -76,6 +95,10 @@ class RockPaperScissors {
         this.updateGameLog(playerMove, computerMove);
         this.updatePlayArea(
             this.moves[playerMove], this.moves[computerMove], roundWinner);
+
+        if (this.playerScore === 5 || this.computerScore === 5) {
+            this.endGame();
+        }
 
         this.round++;
     }
@@ -89,12 +112,6 @@ class RockPaperScissors {
                 this.playRound(button.id, this.getComputerMove());
             })
         })
-    }
-
-    reset() {
-        this.round = 0;
-        this.playerScore = 0;
-        this.computerScore = 0;
     }
 }
 
