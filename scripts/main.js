@@ -5,7 +5,7 @@ class RockPaperScissors {
             1: "paper",
             2: "scissors",
         };
-        this.round = 0;
+        this.round = 1;
         this.playerScore = 0;
         this.computerScore = 0;
     }
@@ -37,46 +37,47 @@ class RockPaperScissors {
             return "It's a draw!";
         }
     }
-    
-    playRound(button) {
-        let playerMove = button.id;
-        let computerMove = this.getComputerMove();
-        let roundWinner = this.getRoundWinner(playerMove, computerMove);
-        
+
+    incrementScores(roundWinner) {
         if (roundWinner === 'player') {
             this.playerScore++;
         } else if (roundWinner === 'computer') {
             this.computerScore++;
         }
+    }
+
+    logRound(playerMove, computerMove, roundWinner) {
+        /**Appends one-line summary of round to gameLog div.*/
+        // Convert numerical moves to text using this.moves dictionary.
+        const gameLog = document.getElementById("gameLog");
+        const log = document.createElement("p"); 
+
+        // Display one-line summary of round.
+        const logRound = `Round ${this.round}`;
+        const logMoves = ( 
+            `P: ${this.moves[playerMove]} - C: ${this.moves[computerMove]}`);
+        const logScores = `P${this.playerScore} - C${this.computerScore}`;
+        log.innerHTML = ` ${logRound} | ${logMoves} | ${logScores}`;
+        gameLog.appendChild(log);
+    }
+
+    playRound(playerMove, computerMove) {
+        let roundWinner = this.getRoundWinner(playerMove, computerMove);
+        
+        this.incrementScores(roundWinner);
+        this.logRound(playerMove, computerMove, roundWinner);
 
         this.round++;
-
-        console.log(`----- ROUND ${this.round} -----`)
-        console.log(`Player: ${this.moves[playerMove]}`);
-        console.log(`Computer: ${this.moves[computerMove]}`);
-        console.log(`Winner: ${roundWinner}`);
-        console.log(`${this.playerScore} - ${this.computerScore}`);
     }
 
     play() {
         //**Runs the game.*/
+
         const buttons = document.querySelectorAll('button');
 
-        buttons.forEach((button) => { 
+        buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                this.playRound(button);
-
-                document.getElementById("scoreboardPlayer").innerHTML = this.playerScore;
-                document.getElementById("scoreboardComputer").innerHTML = this.computerScore;
-
-                if (this.round > 4) {
-                    let result = this.getResult(this.playerScore, this.computerScore);
-                    document.getElementById("result").innerHTML = result;
-                }
-
-                if (this.round > 5) {
-                    this.reset();
-                }
+                this.playRound(button.id, this.getComputerMove());
             })
         })
     }
@@ -85,7 +86,6 @@ class RockPaperScissors {
         this.round = 0;
         this.playerScore = 0;
         this.computerScore = 0;
-        document.getElementById("result").innerHTML = "";
     }
 }
 
