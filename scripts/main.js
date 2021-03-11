@@ -53,8 +53,10 @@ class RockPaperScissors {
 
     updatePlayArea(playerMove, computerMove, roundWinner) {
         /**Updates text contents of playArea div.*/
-        document.getElementById('displayScore').textContent = (
-            `${this.playerScore}-${this.computerScore}`);
+        document.getElementById('displayPlayerScore').textContent = (
+            `Player: ${this.playerScore}`);
+        document.getElementById('displayComputerScore').textContent = (
+            `Computer: ${this.computerScore}`);
         document.getElementById('displayRound').textContent = (
             `Round: ${this.round}`);  
         document.getElementById('displayPlayerMove').textContent = (
