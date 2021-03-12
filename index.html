@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <h2 class="card-title">Rock Paper Scissors</h2>
                     <h6 class="card-subtitle mb-1 text-muted">
-                        Don't know how to play the game? <a href="#">This</a> might help.
+                        Don't know how to play the game? <a href="https://en.wikipedia.org/wiki/Rock_paper_scissors">This</a> might help.
                     </h6>
                 </div>
             </div>
@@ -97,13 +97,41 @@
 
         <!-- Card below to display winner upon end of game. -->
         <div class="d-flex justify-content-center">
-            <div id="gameOverCard" class="card text-center mx-5 mt-3 mb-5" style="width: 75vw; visibility: hidden;">
-                <div id="gameOverCardBody" class="card-body">
+            <div id="gameOverCard" class="card text-center mx-5 mt-3" style="width: 75vw; display: none;">
+                <div class="card-body">
                     <h5 class="card-title">Game Over</h5>
                     <p id="gameOverCardWinner" class="card-text"></p>
                     <button class="btn btn-outline-dark" onClick="window.location.reload();">
                         Play Again
                     </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Short paragraph detailing background of project. -->
+        <div class="d-flex justify-content-center">
+            <div class="card mx-5 mt-3" style="width: 75vw;">
+                <div class="card-body">
+                    <h4 class="card-title">What is this thing?</h4>
+                    <p class="card-text">
+                        This website is a submission for the partial 
+                        completion of The Odin Project's curriculum. Head on 
+                        over to its <a href="https://github.com/FrancisLangit/rock-paper-scissors">
+                        GitHub repository</a> for more information if you're curious.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- License and copyright. -->
+        <div class="d-flex justify-content-center">
+            <div class="card mx-5 mt-3 mb-5" style="width: 75vw;">
+                <div class="card-body">
+                    <h5 class="card-title">MIT License</h5>
+                    <p class="card-text text-muted">
+                        Copyright © 2021 Francis Langit
+                    </p>
                 </div>
             </div>
         </div>

@@ -67,7 +67,7 @@ class RockPaperScissors {
         cardWinner.textContent = this.getResult();
 
         const card = document.getElementById("gameOverCard");
-        card.style.visibility = 'visible';
+        card.style.display = 'block';
     }
 
     checkEndGame() {
