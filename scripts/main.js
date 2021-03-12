@@ -36,33 +36,16 @@ class RockPaperScissors {
         }
     }
 
-    updateGameLog(playerMove, computerMove, roundWinner) {
-        /**Appends one-line summary of round to gameLog div.*/
-        const gameLog = document.getElementById("gameLog");
-        const log = document.createElement("p"); 
-
-        const logRound = `Round ${this.round}.`;
-        const logPlayerMove = `You play ${this.moves[playerMove]}.`;
-        const logComputerMove = `Computer plays ${this.moves[computerMove]}.`;
-        const logWinner = `Round goes to ${roundWinner}.`;
-
-        log.textContent = (
-            `${logRound} ${logPlayerMove} ${logComputerMove} ${logWinner}`);
-        gameLog.appendChild(log);
-    }
-
-    updatePlayArea(playerMove, computerMove, roundWinner) {
-        /**Updates text contents of playArea div.*/
+    updateCards(playerMove, computerMove, roundWinner) {
+        /**Updates text contents of cards in body.*/
         document.getElementById('displayPlayerScore').textContent = (
-            `Player: ${this.playerScore}`);
+            `You: ${this.playerScore}`);
         document.getElementById('displayComputerScore').textContent = (
             `Computer: ${this.computerScore}`);
         document.getElementById('displayRound').textContent = (
             `Round: ${this.round}`);  
-        document.getElementById('displayPlayerMove').textContent = (
-            `You: ${this.moves[playerMove]}`);
         document.getElementById('displayComputerMove').textContent = (
-            `Computer: ${this.moves[computerMove]}`);
+            `${this.moves[computerMove]}!`);
         document.getElementById('displayWinner').textContent = (
             `Winner: ${roundWinner}`);
     }
@@ -80,33 +63,20 @@ class RockPaperScissors {
 
     displayResult() {
         /**Displays who won the best of five.*/
-        const gameOver = document.createElement('h1');
-        gameOver.textContent = 'Game over!';
+        const cardWinner = document.getElementById('gameOverCardWinner');
+        cardWinner.textContent = this.getResult();
 
-        const result = document.createElement('h4');
-        result.textContent = this.getResult();
-
-        playArea.appendChild(gameOver);
-        playArea.appendChild(result);
-    }
-
-    displayPlayAgainButton() {
-        /**Displays a "Play Again" button that reloads the page.*/
-        const playAgainButton = document.createElement('button');
-        playAgainButton.textContent = 'Play Again';
-        playAgainButton.addEventListener('click', () => {
-            window.location.reload();
-        })
-        playArea.appendChild(playAgainButton);
+        const card = document.getElementById("gameOverCard");
+        card.style.display = 'block';
     }
 
     checkEndGame() {
-        /**Clears playArea div and displays result of game and "Play Again"
-         * button once either player reaches 5 points.*/
+        /**Disables #choiceButtons buttons and displays end result of game.*/
         if (this.playerScore === 5 || this.computerScore === 5) {
-            document.getElementById('playArea').innerHTML = '';
+            document.querySelectorAll('#choiceButtons button').forEach(elem => {
+                elem.disabled = true;
+              });              
             this.displayResult();
-            this.displayPlayAgainButton();
         }
     }
 
@@ -114,8 +84,7 @@ class RockPaperScissors {
         /**Plays one round of rock-paper-scissors.*/
         let roundWinner = this.getRoundWinner(playerMove, computerMove);
         this.incrementScores(roundWinner);
-        this.updateGameLog(playerMove, computerMove, roundWinner);
-        this.updatePlayArea(playerMove, computerMove, roundWinner);
+        this.updateCards(playerMove, computerMove, roundWinner);
         this.checkEndGame();
         this.round++;
     }
@@ -123,7 +92,6 @@ class RockPaperScissors {
     play() {
         /**Runs the game.*/
         const buttons = document.querySelectorAll('button');
-
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 this.playRound(button.id, this.getComputerMove());
