@@ -36,22 +36,6 @@ class RockPaperScissors {
         }
     }
 
-    updateGameLog(playerMove, computerMove, roundWinner) {
-        /**Appends one-line summary of round to gameLog div.*/
-        // const gameLog = document.getElementById("gameLog");
-        const log = document.createElement("li"); 
-        log.setAttribute("class", "list-group-item");
-
-        const logRound = `Round ${this.round}.`;
-        const logPlayerMove = `You play ${this.moves[playerMove]}.`;
-        const logComputerMove = `Computer plays ${this.moves[computerMove]}.`;
-        const logWinner = `Round goes to ${roundWinner}.`;
-
-        log.textContent = (
-            `${logRound} ${logPlayerMove} ${logComputerMove} ${logWinner}`);
-        gameLog.appendChild(log);
-    }
-
     updateCards(playerMove, computerMove, roundWinner) {
         /**Updates text contents of cards in body.*/
         document.getElementById('displayPlayerScore').textContent = (
@@ -133,7 +117,6 @@ class RockPaperScissors {
         /**Plays one round of rock-paper-scissors.*/
         let roundWinner = this.getRoundWinner(playerMove, computerMove);
         this.incrementScores(roundWinner);
-        // this.updateGameLog(playerMove, computerMove, roundWinner);
         this.updateCards(playerMove, computerMove, roundWinner);
         this.checkEndGame();
         this.round++;
