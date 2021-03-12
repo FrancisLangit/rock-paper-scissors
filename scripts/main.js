@@ -39,7 +39,8 @@ class RockPaperScissors {
     updateGameLog(playerMove, computerMove, roundWinner) {
         /**Appends one-line summary of round to gameLog div.*/
         const gameLog = document.getElementById("gameLog");
-        const log = document.createElement("p"); 
+        const log = document.createElement("li"); 
+        log.setAttribute("class", "list-group-item");
 
         const logRound = `Round ${this.round}.`;
         const logPlayerMove = `You play ${this.moves[playerMove]}.`;
@@ -51,18 +52,16 @@ class RockPaperScissors {
         gameLog.appendChild(log);
     }
 
-    updatePlayArea(playerMove, computerMove, roundWinner) {
-        /**Updates text contents of playArea div.*/
+    updateCards(playerMove, computerMove, roundWinner) {
+        /**Updates text contents of cards in body.*/
         document.getElementById('displayPlayerScore').textContent = (
-            `Player: ${this.playerScore}`);
+            `You: ${this.playerScore}`);
         document.getElementById('displayComputerScore').textContent = (
             `Computer: ${this.computerScore}`);
         document.getElementById('displayRound').textContent = (
             `Round: ${this.round}`);  
-        document.getElementById('displayPlayerMove').textContent = (
-            `You: ${this.moves[playerMove]}`);
         document.getElementById('displayComputerMove').textContent = (
-            `Computer: ${this.moves[computerMove]}`);
+            `${this.moves[computerMove]}!`);
         document.getElementById('displayWinner').textContent = (
             `Winner: ${roundWinner}`);
     }
@@ -80,33 +79,58 @@ class RockPaperScissors {
 
     displayResult() {
         /**Displays who won the best of five.*/
+        // const moveInterface = document.getElementById('moveInterface');
+
+        // const header = document.createElement('div');
+        // header.setAttribute('class', 'card-header');
+
+        // const gameOver = document.createElement('p');
+        // gameOver.textContent = 'Game over!';
+
+        // const result = document.createElement('h5');
+        // result.setAttribute("class", "card-body");
+        // result.textContent = this.getResult();
+
+        // moveInterface.appendChild(gameOver);
+        // moveInterface.appendChild(result);
+
         const gameOver = document.createElement('h1');
         gameOver.textContent = 'Game over!';
 
-        const result = document.createElement('h4');
+        const result = document.createElement('h5');
         result.textContent = this.getResult();
 
-        playArea.appendChild(gameOver);
-        playArea.appendChild(result);
+        document.getElementById('result').appendChild(gameOver);
+        document.getElementById('result').appendChild(result);
     }
 
     displayPlayAgainButton() {
         /**Displays a "Play Again" button that reloads the page.*/
-        const playAgainButton = document.createElement('button');
-        playAgainButton.textContent = 'Play Again';
-        playAgainButton.addEventListener('click', () => {
-            window.location.reload();
-        })
-        playArea.appendChild(playAgainButton);
+        // const moveInterface = document.getElementById('moveInterface');
+
+        // const playAgainButton = document.createElement('button');
+        // playAgainButton.setAttribute('type', 'button');
+        // playAgainButton.setAttribute('class', 'btn btn-outline-dark ');
+        // playAgainButton.textContent = 'Play Again';
+        // playAgainButton.addEventListener('click', () => {
+        //     window.location.reload();
+        // })
+        // moveInterface.appendChild(playAgainButton);
     }
 
     checkEndGame() {
         /**Clears playArea div and displays result of game and "Play Again"
          * button once either player reaches 5 points.*/
         if (this.playerScore === 5 || this.computerScore === 5) {
-            document.getElementById('playArea').innerHTML = '';
+            // document.getElementById('moveInterface').innerHTML = '';
+            // this.displayResult();
+            // this.displayPlayAgainButton();
+            
+            // Disable buttons allowing user to make a move.
+            document.querySelectorAll('button').forEach(elem => {
+                elem.disabled = true;
+              });              
             this.displayResult();
-            this.displayPlayAgainButton();
         }
     }
 
@@ -114,8 +138,8 @@ class RockPaperScissors {
         /**Plays one round of rock-paper-scissors.*/
         let roundWinner = this.getRoundWinner(playerMove, computerMove);
         this.incrementScores(roundWinner);
-        this.updateGameLog(playerMove, computerMove, roundWinner);
-        this.updatePlayArea(playerMove, computerMove, roundWinner);
+        // this.updateGameLog(playerMove, computerMove, roundWinner);
+        this.updateCards(playerMove, computerMove, roundWinner);
         this.checkEndGame();
         this.round++;
     }

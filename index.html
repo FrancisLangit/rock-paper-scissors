@@ -14,7 +14,7 @@
 
     <body>
         <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-5" style="width: 50em;">
+            <div class="card text-center mx-5 mt-5" style="width: 75vw;">
                 <div class="card-body">
                     <h2 class="card-title">Rock Paper Scissors</h2>
                     <h6 class="card-subtitle mb-1 text-muted">
@@ -25,9 +25,11 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-3" style="width: 50em;">
+            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+                <div class="card-header">
+                    What's your move?
+                </div>
                 <div class="card-body">
-                    <h2 class="card-title">What's your move?</h2>
                     <button id="0" type="button" class="btn btn-outline-dark">
                         Rock
                     </button>
@@ -41,18 +43,67 @@
             </div>
         </div>
 
-        <div id="playArea">
-            <p id="displayPlayerScore"></p>
-            <p id="displayComputerScore"></p>
-
-            <h1 id="displayRound"></h1>
-            <h4 id="displayPlayerMove"></h4>
-            <h4 id="displayComputerMove"></h4>
-            <h4 id="displayWinner"></h4>
-
-            <div id="gameLog"></div>
+        <div class="d-flex justify-content-center">
+            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+                <div class="card-header">
+                    Computer chooses...
+                </div>
+                <div class="card-body">
+                    <h5 id="displayComputerMove" class="card-text">
+                        It hasn't chosen yet. Make a move first.
+                    </h5>
+                </div>
+            </div>
         </div>
 
+        <div class="d-flex justify-content-center">
+            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+                <div id="displayRound" class="card-header">
+                    Whatcha waiting for?
+                </div>
 
+                <div class="card-body">
+                    <h5 id="displayWinner" class="card-text">
+                        Make a move!
+                    </h5>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+                <div class="card-header">
+                    Scoreboard
+                </div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" id="displayPlayerScore">
+                        You: 0
+                    </li>
+                    <li class="list-group-item" id="displayComputerScore">
+                        Computer: 0
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- <div class="d-flex justify-content-center">
+            <div class="card mx-5 mt-3" style="width: 75vw;">
+                <div class="card-header">
+                    Game Log
+                </div>
+
+                <ul id="gameLog" class="list-group list-group-flush"></ul>
+            </div>
+        </div> -->
+
+        <div class="d-flex justify-content-center">
+            <div class="card mx-5 mt-3" style="width: 75vw;">
+                <div class="card-body">
+                    Game Log
+                </div>
+            </div>
+        </div>
     </body>
 </html>
