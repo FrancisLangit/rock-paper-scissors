@@ -71,7 +71,7 @@ class RockPaperScissors {
     }
 
     checkEndGame() {
-        /**Disables buttons and displays end result of game.*/
+        /**Disables #choiceButtons buttons and displays end result of game.*/
         if (this.playerScore === 5 || this.computerScore === 5) {
             document.querySelectorAll('#choiceButtons button').forEach(elem => {
                 elem.disabled = true;
