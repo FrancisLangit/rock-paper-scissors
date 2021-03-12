@@ -2,17 +2,20 @@
 
 <html>
     <head>
+        <!-- Bootstrap configurations. -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous" async></script>
+        
+        <!-- Local JavaScript. Holds logic behind game. -->
         <script src="scripts/main.js" async></script>
         
         <title>Rock Paper Scissors</title>
     </head>
 
     <body>
+        <!-- Title -->
         <div class="d-flex justify-content-center">
             <div class="card text-center mx-5 mt-5" style="width: 75vw;">
                 <div class="card-body">
@@ -24,12 +27,13 @@
             </div>
         </div>
 
+        <!-- Interface where user presses buttons to make moves. -->
         <div class="d-flex justify-content-center">
             <div class="card text-center mx-5 mt-3" style="width: 75vw;">
                 <div class="card-header">
                     What's your move?
                 </div>
-                <div class="card-body">
+                <div id="choiceButtons" class="card-body">
                     <button id="0" type="button" class="btn btn-outline-dark">
                         Rock
                     </button>
@@ -43,6 +47,7 @@
             </div>
         </div>
 
+        <!-- Displays computer's move during round. -->
         <div class="d-flex justify-content-center">
             <div class="card text-center mx-5 mt-3" style="width: 75vw;">
                 <div class="card-header">
@@ -56,21 +61,23 @@
             </div>
         </div>
 
+        <!-- Displays round number and round winner. -->
         <div class="d-flex justify-content-center">
             <div class="card text-center mx-5 mt-3" style="width: 75vw;">
                 <div id="displayRound" class="card-header">
-                    Whatcha waiting for?
+                    Round: 0
                 </div>
 
                 <div class="card-body">
                     <h5 id="displayWinner" class="card-text">
-                        Make a move!
+                        Game not started.
                     </h5>
                 </div>
 
             </div>
         </div>
 
+        <!-- Scoreboard. -->
         <div class="d-flex justify-content-center">
             <div class="card text-center mx-5 mt-3" style="width: 75vw;">
                 <div class="card-header">
@@ -85,6 +92,19 @@
                         Computer: 0
                     </li>
                 </ul>
+            </div>
+        </div>
+
+        <!-- Card below to display winner upon end of game. -->
+        <div class="d-flex justify-content-center">
+            <div id="gameOverCard" class="card text-center mx-5 mt-3 mb-5" style="width: 75vw; visibility: hidden;">
+                <div id="gameOverCardBody" class="card-body">
+                    <h5 class="card-title">Game Over</h5>
+                    <p id="gameOverCardWinner" class="card-text"></p>
+                    <button class="btn btn-outline-dark" onClick="window.location.reload();">
+                        Play Again
+                    </button>
+                </div>
             </div>
         </div>
     </body>

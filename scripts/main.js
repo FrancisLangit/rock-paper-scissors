@@ -63,50 +63,17 @@ class RockPaperScissors {
 
     displayResult() {
         /**Displays who won the best of five.*/
+        const cardWinner = document.getElementById('gameOverCardWinner');
+        cardWinner.textContent = this.getResult();
 
-        // Create card.
-        const container = document.createElement('div');
-        container.setAttribute('class', 'd-flex justify-content-center')
-
-        const card = document.createElement('div');
-        card.setAttribute('class', 'card text-center mx-5 mt-3');
-        card.setAttribute('style', 'width: 75vw;');
-        container.appendChild(card);
-
-        const cardBody = document.createElement('div');
-        cardBody.setAttribute('class', 'card-body');
-        card.appendChild(cardBody);
-
-        // Fill card with results of game. 
-        const gameOver = document.createElement('h5');
-        gameOver.setAttribute('class', 'card-title')
-        gameOver.textContent = 'Game over.';
-        cardBody.appendChild(gameOver);
-
-        const result = document.createElement('p');
-        result.setAttribute('class', 'card-text');
-        result.textContent = this.getResult();
-        cardBody.appendChild(result);
-
-        // Append play again button to cardBody.
-        const playAgainButton = document.createElement('button');
-        playAgainButton.setAttribute('type', 'button');
-        playAgainButton.setAttribute('class', 'btn btn-outline-dark ');
-        playAgainButton.textContent = 'Play Again';
-        playAgainButton.addEventListener('click', () => {
-            window.location.reload();
-        })
-        cardBody.appendChild(playAgainButton);
-
-        // Append card to body.
-        document.getElementsByTagName('body')[0].appendChild(container);
+        const card = document.getElementById("gameOverCard");
+        card.style.visibility = 'visible';
     }
 
     checkEndGame() {
-        /**Clears playArea div and displays result of game and "Play Again"
-         * button once either player reaches 5 points.*/
+        /**Disables buttons and displays end result of game.*/
         if (this.playerScore === 5 || this.computerScore === 5) {
-            document.querySelectorAll('button').forEach(elem => {
+            document.querySelectorAll('#choiceButtons button').forEach(elem => {
                 elem.disabled = true;
               });              
             this.displayResult();
@@ -125,7 +92,6 @@ class RockPaperScissors {
     play() {
         /**Runs the game.*/
         const buttons = document.querySelectorAll('button');
-
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
                 this.playRound(button.id, this.getComputerMove());
