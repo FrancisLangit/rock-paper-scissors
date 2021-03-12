@@ -38,7 +38,7 @@ class RockPaperScissors {
 
     updateGameLog(playerMove, computerMove, roundWinner) {
         /**Appends one-line summary of round to gameLog div.*/
-        const gameLog = document.getElementById("gameLog");
+        // const gameLog = document.getElementById("gameLog");
         const log = document.createElement("li"); 
         log.setAttribute("class", "list-group-item");
 
@@ -79,54 +79,49 @@ class RockPaperScissors {
 
     displayResult() {
         /**Displays who won the best of five.*/
-        // const moveInterface = document.getElementById('moveInterface');
 
-        // const header = document.createElement('div');
-        // header.setAttribute('class', 'card-header');
+        // Create card.
+        const container = document.createElement('div');
+        container.setAttribute('class', 'd-flex justify-content-center')
 
-        // const gameOver = document.createElement('p');
-        // gameOver.textContent = 'Game over!';
+        const card = document.createElement('div');
+        card.setAttribute('class', 'card text-center mx-5 mt-3');
+        card.setAttribute('style', 'width: 75vw;');
+        container.appendChild(card);
 
-        // const result = document.createElement('h5');
-        // result.setAttribute("class", "card-body");
-        // result.textContent = this.getResult();
+        const cardBody = document.createElement('div');
+        cardBody.setAttribute('class', 'card-body');
+        card.appendChild(cardBody);
 
-        // moveInterface.appendChild(gameOver);
-        // moveInterface.appendChild(result);
+        // Fill card with results of game. 
+        const gameOver = document.createElement('h5');
+        gameOver.setAttribute('class', 'card-title')
+        gameOver.textContent = 'Game over.';
+        cardBody.appendChild(gameOver);
 
-        const gameOver = document.createElement('h1');
-        gameOver.textContent = 'Game over!';
-
-        const result = document.createElement('h5');
+        const result = document.createElement('p');
+        result.setAttribute('class', 'card-text');
         result.textContent = this.getResult();
+        cardBody.appendChild(result);
 
-        document.getElementById('result').appendChild(gameOver);
-        document.getElementById('result').appendChild(result);
-    }
+        // Append play again button to cardBody.
+        const playAgainButton = document.createElement('button');
+        playAgainButton.setAttribute('type', 'button');
+        playAgainButton.setAttribute('class', 'btn btn-outline-dark ');
+        playAgainButton.textContent = 'Play Again';
+        playAgainButton.addEventListener('click', () => {
+            window.location.reload();
+        })
+        cardBody.appendChild(playAgainButton);
 
-    displayPlayAgainButton() {
-        /**Displays a "Play Again" button that reloads the page.*/
-        // const moveInterface = document.getElementById('moveInterface');
-
-        // const playAgainButton = document.createElement('button');
-        // playAgainButton.setAttribute('type', 'button');
-        // playAgainButton.setAttribute('class', 'btn btn-outline-dark ');
-        // playAgainButton.textContent = 'Play Again';
-        // playAgainButton.addEventListener('click', () => {
-        //     window.location.reload();
-        // })
-        // moveInterface.appendChild(playAgainButton);
+        // Append card to body.
+        document.getElementsByTagName('body')[0].appendChild(container);
     }
 
     checkEndGame() {
         /**Clears playArea div and displays result of game and "Play Again"
          * button once either player reaches 5 points.*/
         if (this.playerScore === 5 || this.computerScore === 5) {
-            // document.getElementById('moveInterface').innerHTML = '';
-            // this.displayResult();
-            // this.displayPlayAgainButton();
-            
-            // Disable buttons allowing user to make a move.
             document.querySelectorAll('button').forEach(elem => {
                 elem.disabled = true;
               });              
