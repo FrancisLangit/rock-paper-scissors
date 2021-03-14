@@ -1,0 +1,12 @@
+#card-container {
+    display: flex;
+    justify-content: center;
+}
+
+#card-container .card {
+    width: 75vw; 
+}
+
+#gameOverCard {
+    display: none;
+}

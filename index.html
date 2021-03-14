@@ -8,7 +8,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous" async></script>
         
-        <!-- Local JavaScript. Holds logic behind game. -->
+        <!-- Local CSS and JavaScript. -->
+        <link rel="stylesheet" href="styles.css">
         <script src="main.js" async></script>
         
         <title>Rock Paper Scissors</title>
@@ -16,8 +17,8 @@
 
     <body class="bg-secondary">
         <!-- Title -->
-        <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-5" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-5">
                 <div class="card-body">
                     <h2 class="card-title">Rock Paper Scissors</h2>
                     <h6 class="card-subtitle mb-1 text-muted">
@@ -28,8 +29,8 @@
         </div>
 
         <!-- Interface where user presses buttons to make moves. -->
-        <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3">
                 <div class="card-header">
                     What's your move?
                 </div>
@@ -48,8 +49,8 @@
         </div>
 
         <!-- Displays computer's move during round. -->
-        <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3">
                 <div class="card-header">
                     Computer chooses...
                 </div>
@@ -62,8 +63,8 @@
         </div>
 
         <!-- Displays round number and round winner. -->
-        <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3">
                 <div id="displayRound" class="card-header">
                     Round: 0
                 </div>
@@ -78,8 +79,8 @@
         </div>
 
         <!-- Scoreboard. -->
-        <div class="d-flex justify-content-center">
-            <div class="card text-center mx-5 mt-3" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3">
                 <div class="card-header">
                     Scoreboard
                 </div>
@@ -96,8 +97,8 @@
         </div>
 
         <!-- Card below to display winner upon end of game. -->
-        <div class="d-flex justify-content-center">
-            <div id="gameOverCard" class="card text-center mx-5 mt-3" style="width: 75vw; display: none;">
+        <div id="card-container">
+            <div id="gameOverCard" class="card text-center mx-5 mt-3">
                 <div class="card-body">
                     <h5 class="card-title">Game Over</h5>
                     <p id="gameOverCardWinner" class="card-text"></p>
@@ -109,8 +110,8 @@
         </div>
 
         <!-- Short paragraph detailing background of project. -->
-        <div class="d-flex justify-content-center">
-            <div class="card mx-5 mt-3" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3">
                 <div class="card-body">
                     <h4 class="card-title">What is this thing?</h4>
                     <p class="card-text">
@@ -125,8 +126,8 @@
         </div>
 
         <!-- License and copyright. -->
-        <div class="d-flex justify-content-center">
-            <div class="card mx-5 mt-3 mb-5" style="width: 75vw;">
+        <div id="card-container">
+            <div class="card text-center mx-5 mt-3 mb-5">
                 <div class="card-body">
                     <h5 class="card-title">MIT License</h5>
                     <p class="card-text text-muted">
