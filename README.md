@@ -1,6 +1,6 @@
 ![Repository banner](readme_banner.png)
 
-`rock-paper-scissors` is a web-based video game simulating Rock, Paper, Scissors built on HTML, CSS, and JavaScript. It was created in partial completion of The Odin Project "Foundations" course.
+`rock-paper-scissors` is a web-based video game simulating Rock, Paper, Scissors built on HTML, CSS, and JavaScript. It was created in [partial completion of The Odin Project "Foundations" course](https://www.theodinproject.com/courses/foundations/lessons/rock-paper-scissors).
 
 ## Installation
 
@@ -21,7 +21,7 @@ With that, as the description of this project suggests, the website simulates yo
 
 ## Contributing
 
-This repository is not currently open to contribution. However, should one encounter a bug upon its usage, feel free to submit an issue detailing such.
+This repository is currently not open to contribution. However, should one encounter a bug upon its usage, feel free to submit an issue detailing such.
 
 ## License
 
