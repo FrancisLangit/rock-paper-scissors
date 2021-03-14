@@ -1,4 +1,4 @@
-![](/home/francislangit/Desktop/rock-paper-scissors/readme_banner.png)
+![Repository banner](readme_banner.png)
 
 `rock-paper-scissors` is a web-based video game simulating Rock, Paper, Scissors built on HTML, CSS, and JavaScript. It was created in partial completion of The Odin Project "Foundations" course.
 
@@ -17,7 +17,7 @@ If you don't know how to play Rock, Paper, Scissors, [this](https://en.wikipedia
 
 With that, as the description of this project suggests, the website simulates you playing the aforementioned game against a computer to a best of five.  One may start-off the first round by pressing any of the buttons under the "What's your move?" card.
 
-![GIF demonstrating usage of website](/home/francislangit/Desktop/rock-paper-scissors/readme_usage_gif.gif)
+![GIF demonstrating usage of website](readme_usage_gif.gif)
 
 ## Contributing
 
