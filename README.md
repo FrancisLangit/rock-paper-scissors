@@ -4,7 +4,7 @@
 
 ## Installation
 
-[A live deployment of `rock-paper-scissors` is available here](#).
+[A live deployment of `rock-paper-scissors` is available here](https://francislangit.github.io/rock-paper-scissors/).
 
 Otherwise, the following steps are for those that would like to run the website on their local computer and/or edit its source code. 
 
